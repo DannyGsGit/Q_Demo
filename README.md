@@ -9,6 +9,7 @@ $ source activate
 (dqn_demo) $ pip3 install jupyter-client
 (dqn_demo) $ pip3 install ipykernel
 (dqn_demo) $ pip3 install numpy
+(dqn_demo) $ pip3 install scipy
 (dqn_demo) $ pip3 install pandas
 (dqn_demo) $ pip3 install matplotlib
 (dqn_demo) $ pip3 install blosc
@@ -25,9 +26,8 @@ sudo apt-get install libsdl-gfx1.2-dev libsdl-image1.2-dev libsdl1.2-dev cmake
 ```
 git clone https://github.com/mgbellemare/Arcade-Learning-Environment.git
 cd Arcade-Learning-Environment
-cmake -DUSE_SDL=ON -DUSE_RLGLUE=OFF -DBUILD_EXAMPLES=ON
+cmake -DUSE_SDL=ON -DUSE_RLGLUE=OFF -DBUILD_EXAMPLES=ON .
 make -j 4
 sudo make install
 sudo pip3 install .
 ```
-* Install
