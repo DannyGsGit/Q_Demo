@@ -33,11 +33,15 @@ Get ALE from Git repo and pip install:
 (dqn_demo) $ cmake -DUSE_SDL=ON -DUSE_RLGLUE=OFF -DBUILD_EXAMPLES=ON .
 (dqn_demo) $ make -j4
 (dqn_demo) $ sudo make install
-(dqn_demo) $ sudo pip3 install .
+(dqn_demo) $ sudo -H pip3 install .
+```
+Add a symlink to ALE in the virtual environment:
+```
+(dqn_demo) $ ln -s ~/Python34/Frameworks/Arcade-Learning-Environment/ale_python_interface ~/.virtualenvs/dqn_demo/lib/python3.4/site-packages
 ```
 Test that ALE is installed properly:
 ```
 (dqn_demo) $ python3
 >>> from ale_python_interface import ALEInterface
 ```
-If the command does not produce an error, ALE is installed properly.
+If the command does not produce an *error*, ALE is installed properly.
