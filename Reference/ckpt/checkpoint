@@ -1,0 +1,6 @@
+model_checkpoint_path: "model_nature_120000"
+all_model_checkpoint_paths: "model_nature_40000"
+all_model_checkpoint_paths: "model_nature_60000"
+all_model_checkpoint_paths: "model_nature_80000"
+all_model_checkpoint_paths: "model_nature_100000"
+all_model_checkpoint_paths: "model_nature_120000"

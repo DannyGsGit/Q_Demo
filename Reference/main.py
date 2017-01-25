@@ -39,7 +39,7 @@ params = {
 	'train_start':100,
 	'img_scale':255.0,
 	'clip_delta' : 1,
-	'gpu_fraction' : 0.25,
+	'gpu_fraction' : 0.6,
 	'batch_accumulator':'mean',
 	'record_eval' : True,
 	'only_eval' : 'n'
@@ -54,7 +54,7 @@ class deep_atari:
 
 		self.sess = tf.Session(config=self.gpu_config)
 		self.DB = database(self.params)
-		self.engine = emulator(rom_name='breakout.bin', vis=self.params['visualize'],windowname=self.params['network_type']+'_preview')
+		self.engine = emulator(rom_name='freeway.bin', vis=self.params['visualize'],windowname=self.params['network_type']+'_preview')
 		self.params['num_act'] = len(self.engine.legal_actions)
 		self.build_net()
 		self.training = True
@@ -221,7 +221,6 @@ class deep_atari:
 			self.state_gray = cv2.cvtColor(self.state_resized, cv2.COLOR_BGR2GRAY)
 			self.state_proc[:,:,3] = self.state_gray[26:110,:]/self.params['img_scale']
 
-			#TODO : add video recording
 
 	def reset_game(self):
 		self.state_proc = np.zeros((84,84,4)); self.action = -1; self.terminal = False; self.reward = 0

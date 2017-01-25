@@ -1,0 +1,2 @@
+step,epoch,train_cnt,avg_reward,avg_q,epsilon,time
+100000,0,100000,0.0,0.10603449015319347,0.05,3473.285299062729

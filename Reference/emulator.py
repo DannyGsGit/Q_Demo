@@ -12,7 +12,7 @@ class emulator:
 		self.max_frames_per_episode = self.ale.getInt(b"max_num_frames_per_episode");
 		self.ale.setInt(b"random_seed",123)
 		self.ale.setInt(b"frame_skip",4)
-		self.ale.loadROM(b"roms/breakout.bin")
+		self.ale.loadROM(b"roms/freeway.bin")
 		self.legal_actions = self.ale.getMinimalActionSet()
 		self.action_map = dict()
 		self.windowname = windowname
@@ -48,6 +48,6 @@ class emulator:
 
 
 if __name__ == "__main__":
-	engine = emulator('breakout.bin',True)
+	engine = emulator('freeway.bin',True)
 	engine.next(0)
 	time.sleep(5)
