@@ -54,7 +54,7 @@ class deep_atari:
 
 		self.sess = tf.Session(config=self.gpu_config)
 		self.DB = database(self.params)
-		self.engine = emulator(rom_name='freeway.bin', vis=self.params['visualize'],windowname=self.params['network_type']+'_preview')
+		self.engine = emulator(rom_name='breakout.bin', vis=self.params['visualize'],windowname=self.params['network_type']+'_preview')
 		self.params['num_act'] = len(self.engine.legal_actions)
 		self.build_net()
 		self.training = True
