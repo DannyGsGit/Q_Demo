@@ -6,41 +6,21 @@ import time
 from ale_python_interface import ALEInterface
 import cv2
 from scipy import misc
-import gc #garbage collector
+import gc
 import _thread
 
+# Turn on garbage collection
 gc.enable()
 
-params = {
+generic_params = {
 	'visualize' : True,
-	'network_type':'nature',
+	'network_type':'rl_dqn',
 	'ckpt_file':None,
-	'steps_per_epoch': 50000,
-	'num_epochs': 100,
-	'eval_freq':50000,
-	'steps_per_eval':10000,
-	'copy_freq' : 10000,
-	'disp_freq':10000,
-	'save_interval':10000,
 	'db_size': 1000000,
-	'batch': 32,
-	'num_act': 0,
 	'input_dims' : [210, 160, 3],
 	'input_dims_proc' : [84, 84, 4],
-	'learning_interval': 1,
-	'eps': 1.0,
-	'eps_step':1000000,
-	'eps_min' : 0.1,
-	'eps_eval' : 0.05,
-	'discount': 0.95,
-	'lr': 0.0002,
-	'rms_decay':0.99,
-	'rms_eps':1e-6,
-	'train_start':100,
 	'img_scale':255.0,
-	'clip_delta' : 1,
 	'gpu_fraction' : 0.6,
-	'batch_accumulator':'mean',
 	'record_eval' : True,
 	'only_eval' : 'n'
 }
@@ -305,44 +285,18 @@ if __name__ == "__main__":
 			if sys.argv[i+1] == 'y' : params['visualize'] = True
 			elif sys.argv[i+1] == 'n' : params['visualize'] = False
 			else:
-				print ('Invalid visualization argument!!! Available arguments are')
-				print ('        y or n')
+				print ('Error: visualize must be [y] or [n]')
 				raise ValueError()
 		elif sys.argv[i] == '-gpu_fraction' : params['gpu_fraction'] = float(sys.argv[i+1])
 		elif sys.argv[i] == '-db_size' : params['db_size'] = int(sys.argv[i+1])
 		elif sys.argv[i] == '-only_eval' : params['only_eval'] = sys.argv[i+1]
 		else :
-			print ('Invalid arguments!!! Available arguments are')
-			#print '        -weight (filename)'
-			#print '        -network_type (nips or nature)'
-			#print '        -visualize (y or n)'
-			#print '        -gpu_fraction (0.1~0.9)'
-			#print '        -db_size (integer)'
+			print ('Invalid argument passed to interpreter')
 			raise ValueError()
-	if params['network_type'] == 'nips':
-		from DQN_nips import *
-	elif params['network_type'] == 'nature':
-		from DQN_nature import *
-		params['steps_per_epoch']= 200000
-		params['eval_freq'] = 100000
-		params['steps_per_eval'] = 10000
-		params['copy_freq'] = 10000
-		params['disp_freq'] = 20000
-		params['save_interval'] = 20000
-		params['learning_interval'] = 1
-		params['discount'] = 0.99
-		params['lr'] = 0.00025
-		params['rms_decay'] = 0.95
-		params['rms_eps']=0.01
-		params['clip_delta'] = 1.0
-		params['train_start']=50000
-		params['batch_accumulator'] = 'sum'
-		params['eps_step'] = 1000000
-		params['num_epochs'] = 250
-		params['batch'] = 32
+	if params['network_type'] == 'rl_dqn':
+		from Agent_DQN import *
 	else :
-		print ('Invalid network type! Available network types are')
-		#print '        nips or nature'
+		print ('Error, network_type must be [rl_dqn]')
 		raise ValueError()
 
 	if params['only_eval'] == 'y' : only_eval = True

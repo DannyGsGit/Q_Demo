@@ -4,7 +4,11 @@ import sys
 from ale_python_interface import ALEInterface
 import cv2
 import time
-#import scipy.misc
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# To do: Remove hard-coded breakout.bin item
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 class emulator:
 	def __init__(self, rom_name, vis,windowname='preview'):
@@ -40,7 +44,6 @@ class emulator:
 	def next(self, action_indx):
 		reward = self.ale.act(action_indx)
 		nextstate = self.get_image()
-		# scipy.misc.imsave('test.png',nextstate)
 		if self.vis:
 			cv2.imshow(self.windowname,nextstate)
 		return nextstate, reward, self.ale.game_over()

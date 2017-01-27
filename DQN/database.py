@@ -22,7 +22,7 @@ class database:
 		self.flag = False
 		return
 
-	def get_batches(self):		
+	def get_batches(self):
 		for i in range(self.bat_size):
 			idx = 0
 			while idx < 3 or (idx > self.counter-2 and idx < self.counter+3):
@@ -32,11 +32,6 @@ class database:
 			self.bat_a[i] = self.actions[idx]
 			self.bat_t[i] = self.terminals[idx]
 			self.bat_r[i] = self.rewards[idx]
-		#self.bat_s[0] = np.transpose(self.states[10:14,:,:],(1,2,0))/self.img_scale
-		#self.bat_n[0] = np.transpose(self.states[11:15,:,:],(1,2,0))/self.img_scale
-		#self.bat_a[0] = self.actions[13]
-		#self.bat_t[0] = self.terminals[13]
-		#self.bat_r[0] = self.rewards[13]
 
 		return self.bat_s,self.bat_a,self.bat_t,self.bat_n,self.bat_r
 
@@ -57,4 +52,3 @@ class database:
 			return self.counter
 		else:
 			return self.size
-	    
