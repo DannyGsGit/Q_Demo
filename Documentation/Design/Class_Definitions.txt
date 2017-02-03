@@ -1,0 +1,33 @@
+
+=========================================
+FRAME ENVIRONMENT:
+
+* Frame
+   - Initialize frame w/ pre-populated parts
+   * BoM (Collection of parts)
+   * Part placement
+   * Output state 's'
+
+* BoM
+   * Generate BoM
+   * Get part
+
+* Actions
+   - Legal action set
+      - Flip (X, Y)
+      - Rail side (U, D)
+      - Rail position (L, R)
+      - Place (P)
+   * Get action
+   * Apply action
+
+* Reward
+   - Set reward = 0
+   * Score constraint violations (+50)
+   * Score blue items back of cab (+30)
+   * Score red items w/in 2m of BoC (+20)
+
+* Display
+   - Create display window(s)
+   * Render frame state
+   * Render BoM

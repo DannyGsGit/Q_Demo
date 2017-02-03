@@ -1,0 +1,29 @@
+bom_name = 'bom1.json'
+bom_directory = 'Environment/BoMs/'
+with open(os.path.join(bom_directory, bom_name), 'r') as f:
+    parts = json.load(f)
+
+part_files = parts["parts"]
+part_directory = 'Environment/Parts/'
+
+        # Pre-allocate pandas DF
+part_data = pd.DataFrame(columns = ['group', 'pn', 'geom_type', 'geom_xy', 'weight'])
+
+        # 
+for index, js in enumerate(part_files):
+    with open(os.path.join(part_directory, js), 'r') as json_file:
+        json_text = json.load(json_file)
+        
+        print(json_text)
+                # here you need to know the layout of your json and each json has to have
+                # the same structure (obviously not the structure I have here)
+        group = json_text['Group']
+        pn = json_text['PN']
+        geom_type = json_text['Geom']['type']
+        geom_xy = json_text['Geom']['coordinates']
+        weight = json_text['Weight']
+        part_data.loc[index] = [group, pn, geom_type, geom_xy, weight]
+        
+
+
+
